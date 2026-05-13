@@ -248,55 +248,6 @@
   }
   .hero-cta:hover{transform: translateY(-2px); box-shadow: 0 20px 40px rgba(212,175,106,.42), inset 0 1px 0 rgba(255,255,255,.5);}
 
-  /* v2 hero — logo + data/hora inline, headline e subheadline */
-  .hero-mark-row{
-    display:flex; align-items:center; gap: 22px;
-    margin: 0 0 32px;
-  }
-  .openday-mark.sm{
-    width: clamp(110px, 11vw, 140px);
-    margin: 0;
-    flex-shrink: 0;
-  }
-  .mark-divider{
-    width:1px; align-self: stretch;
-    background: linear-gradient(180deg, transparent, rgba(212,175,106,.5), transparent);
-  }
-  .hero-meta.inline{
-    border: none; padding: 0; margin: 0;
-    max-width: none;
-    gap: 22px;
-  }
-  .hero-meta.inline .meta-value{font-size: 17px; letter-spacing: 0;}
-  .hero-meta.inline .meta-label{font-size: 9.5px; letter-spacing: .32em;}
-
-  .hero-headline{
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(32px, 3.4vw, 46px);
-    line-height: 1.1;
-    letter-spacing: -.015em;
-    color: var(--cream);
-    margin: 0 0 22px;
-    max-width: 18ch;
-  }
-  .hero-headline em{color: var(--gold); font-style: normal; font-weight: 800;}
-  .hero-sub{
-    font-family: var(--body);
-    font-size: 15px; line-height: 1.6;
-    color: var(--muted);
-    margin: 0 0 32px;
-    max-width: 52ch;
-  }
-
-  @media (max-width: 720px){
-    .hero-mark-row{flex-wrap: wrap; gap: 16px;}
-    .mark-divider{display:none;}
-    .hero-meta.inline{width: 100%;}
-    .hero-headline{font-size: 28px;}
-    .hero-sub{font-size: 14px;}
-  }
-
   @media (max-width: 720px){
     .hero{height: 600px; max-height: 600px;}
     .openday-mark{width: clamp(220px, 60vw, 300px);}
@@ -919,26 +870,21 @@ function Hero(){
         <div className="hero-content">
           <div className="hero-eyebrow">MTK Eventos · Cachoeirinha · RS</div>
 
-          <div className="hero-mark-row">
-            <img src="assets/openday-logo.svg" alt="Open Day" className="openday-mark sm"/>
-            <div className="mark-divider" aria-hidden="true"/>
-            <div className="hero-meta inline">
-              <div className="meta-item">
-                <span className="meta-label">Data</span>
-                <span className="meta-value">29<span className="sep">/</span>05<span className="sep">/</span>2026</span>
-              </div>
-              <div className="meta-item">
-                <span className="meta-label">Horário</span>
-                <span className="meta-value">19h00</span>
-              </div>
+          <h1 aria-label="Open Day — Venha se sentir na sua festa" style={{margin:'0 0 30px'}}>
+            <img src="assets/openday-logo.svg" alt="Open Day — Venha se sentir na sua festa" className="openday-mark"/>
+          </h1>
+
+          <div className="hero-meta">
+            <div className="meta-item">
+              <span className="meta-label">Data</span>
+              <span className="meta-value">29<span className="sep">/</span>05<span className="sep">/</span>2026</span>
+            </div>
+            <div className="meta-divider" aria-hidden="true"/>
+            <div className="meta-item">
+              <span className="meta-label">Horário</span>
+              <span className="meta-value">19h00</span>
             </div>
           </div>
-
-          <h1 className="hero-headline title-light">Uma noite para sentir, antes de <em>viver</em>.</h1>
-
-          <p className="hero-sub">
-            Pais, debutantes e noivos: este é o convite para entrar na MTK Eventos sem compromisso, conversar com nossos parceiros, ver a casa montada e conferir cada serviço em ação. Você vai sair com clareza para decidir.
-          </p>
 
           <a href="#rsvp" className="hero-cta">Confirmar Presença</a>
         </div>
@@ -954,6 +900,7 @@ function About(){
       <div className="wrap">
         <div className="section-head">
           <div className="eyebrow">Sobre o evento</div>
+          <h2 className="title-light">Uma noite para sentir, antes de <em>viver</em>.</h2>
         </div>
         <div className="about-grid">
           <div>
@@ -961,6 +908,9 @@ function About(){
             <div className="lead">
               O <em>Open Day</em> é o momento em que abrimos nossas portas para você experimentar — <em>de perto</em> — a atmosfera, os sabores e os detalhes que vão transformar o seu <em>15 anos</em> ou o seu <em>casamento</em> em memória inesquecível.
             </div>
+            <p style={{marginTop: 24}}>
+              Pais, debutantes e noivos: este é o convite para entrar na MTK Eventos sem compromisso, conversar com nossos parceiros, ver a casa montada e conferir cada serviço em ação. Você vai sair com clareza para decidir.
+            </p>
           </div>
           <div className="about-photo" aria-label="Espaço para foto do salão MTK">
             <Sparkles count={14}/>
