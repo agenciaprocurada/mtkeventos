@@ -710,7 +710,7 @@
     border-top: 1px solid rgba(212,175,106,.15);
   }
   .foot-grid{
-    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
+    display:grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 40px;
     margin-bottom: 56px;
   }
   @media (max-width: 880px){.foot-grid{grid-template-columns: 1fr 1fr; gap: 36px;}}
@@ -758,6 +758,151 @@
 
   /* prevent FOUC */
   #app:empty{min-height: 100vh}
+
+  /* ---------- RSVP — spotlight dourado ---------- */
+  .rsvp{
+    background:
+      radial-gradient(900px 600px at 50% 42%, rgba(212,175,106,.32), rgba(212,175,106,.12) 35%, transparent 65%),
+      radial-gradient(1200px 800px at 50% 10%, rgba(212,175,106,.14), transparent 60%);
+  }
+  .rsvp-card{
+    background: linear-gradient(180deg, rgba(22,15,28,.92), rgba(10,7,14,.94));
+    border: 2px solid var(--gold);
+    backdrop-filter: blur(10px);
+    box-shadow:
+      0 0 0 1px rgba(212,175,106,.18),
+      0 0 60px rgba(212,175,106,.28),
+      0 30px 90px rgba(0,0,0,.55),
+      inset 0 1px 0 rgba(255,255,255,.04);
+  }
+  .rsvp-card::before{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(212,175,106,.16), transparent 70%),
+      radial-gradient(80% 60% at 100% 100%, rgba(212,175,106,.08), transparent 70%);
+  }
+  .rsvp-card .corner{ width: 34px; height: 34px; }
+  .rsvp-card .corner.tl{ top:-2px; left:-2px; border-top:2px solid var(--gold-3); border-left:2px solid var(--gold-3); }
+  .rsvp-card .corner.tr{ top:-2px; right:-2px; border-top:2px solid var(--gold-3); border-right:2px solid var(--gold-3); }
+  .rsvp-card .corner.bl{ bottom:-2px; left:-2px; border-bottom:2px solid var(--gold-3); border-left:2px solid var(--gold-3); }
+  .rsvp-card .corner.br{ bottom:-2px; right:-2px; border-bottom:2px solid var(--gold-3); border-right:2px solid var(--gold-3); }
+
+  /* ---------- mobile revision ---------- */
+  .nav-actions{ display:flex; align-items:center; gap:12px; }
+  .nav-toggle{
+    display:none;
+    width:44px; height:44px; padding:0;
+    background:transparent; border:none; cursor:pointer;
+    color: var(--cream);
+    align-items:center; justify-content:center;
+    transition: color .2s ease;
+  }
+  .nav-toggle:hover{ color: var(--gold); }
+  .nav-toggle svg{ width:22px; height:22px; }
+  .nav-cta-mobile{ display:none; }
+
+  @media (max-width: 820px){
+    .nav-toggle{ display:inline-flex; }
+    .nav-cta{ display:none; }
+    .nav-links{
+      display:none;
+      position:absolute; top:78px; left:0; right:0;
+      flex-direction:column; gap:0;
+      padding: 6px 22px 22px;
+      background: rgba(6,4,6,.96);
+      backdrop-filter: blur(12px) saturate(120%);
+      border-bottom: 1px solid rgba(212,175,106,.18);
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links a{
+      padding: 16px 0;
+      border-bottom: 1px solid var(--ink-line);
+      width:100%;
+      letter-spacing: .22em;
+    }
+    .nav-links a:last-child{ border-bottom:none; }
+    .nav-links a.nav-cta-mobile{
+      display:block;
+      margin-top: 14px;
+      padding: 16px 22px;
+      color:#0b070d;
+      background: linear-gradient(180deg, var(--gold-3), var(--gold) 55%, var(--gold-2));
+      font-weight:700;
+      text-align:center;
+      box-shadow: 0 12px 28px rgba(212,175,106,.22), inset 0 1px 0 rgba(255,255,255,.5);
+      border-bottom:none;
+    }
+    .nav-links a.nav-cta-mobile:hover{ color:#0b070d; }
+  }
+
+  @media (max-width: 720px){
+    .wrap{ padding: 0 22px; }
+
+    /* spacing reset for mobile */
+    section.block{ padding: 72px 0; }
+    section.block.tight{ padding: 56px 0; }
+    .section-head{ margin: 0 auto 40px; }
+    .section-head p{ font-size: 15.5px; }
+    .info-section{ padding: 64px 0; }
+    .rsvp{ padding: 72px 0; }
+    .about{ padding-bottom: 40px; }
+    footer{ padding: 56px 0 32px; }
+
+    /* hero — altura flexível e CTA cheia */
+    .hero{ height:auto; max-height:none; min-height: 540px; padding: 36px 0 48px; }
+    .hero-left{ padding: 0 22px; }
+    .hero-content{ max-width:100%; }
+    .hero-sub{ font-size: 15px; margin-bottom: 28px; }
+    .hero-cta{ display:block; text-align:center; padding: 18px 24px; width:100%; }
+    .hero-mark-row{ flex-wrap: nowrap; gap: 16px; align-items: center; margin-bottom: 26px; }
+    .mark-divider{ display: block; }
+    .hero-meta.inline{ width: auto; gap: 14px; flex: 1; min-width: 0; }
+    .hero-meta.inline .meta-value{ font-size: 14px; letter-spacing: 0; white-space: nowrap; }
+    .hero-meta.inline .meta-label{ font-size: 9px; letter-spacing: .28em; }
+    .openday-mark.sm{ width: clamp(96px, 26vw, 120px); }
+
+    /* about */
+    .about-photo{ aspect-ratio: 1/1; }
+
+    /* form — 16px para evitar zoom no iOS */
+    .field input, .field select, .field textarea{ font-size: 16px; }
+    .rsvp-card{ padding: 32px 22px; }
+
+    /* radio "interesse em" — empilhar vertical no mobile */
+    .radio-row{ flex-direction: column; gap: 10px; }
+    .radio-row label{ width: 100%; min-width: 0; flex: 1 1 auto; }
+    .radio-row label .lab{ padding: 16px 12px; letter-spacing: .22em; }
+
+    /* CTA do form — largura total */
+    .submit-row{ flex-direction: column; align-items: stretch; gap: 14px; }
+    .submit-row .btn.primary{ width: 100%; justify-content: center; }
+    .submit-row .note{ text-align: center; }
+
+    /* map address */
+    .map-address{
+      flex-wrap: wrap; gap: 12px;
+      left: 16px; right: 16px; bottom: 16px;
+      padding: 14px 16px;
+    }
+    .map-address a{ width:100%; text-align:center; padding: 12px 14px; }
+
+    /* differentials */
+    .diff{ padding: 30px 22px 26px; }
+  }
+
+  @media (max-width: 720px){
+    .hero-eyebrow{ display:none; }
+    .hero-headline{ font-size: 38px; line-height: 1.08; }
+  }
+
+  @media (max-width: 480px){
+    nav.top .inner{ height: 64px; }
+    .brand img{ height: 36px; }
+    .nav-links{ top: 64px; }
+    .hero-headline{ font-size: 32px; }
+    .float-wa{ width: 50px; height: 50px; right: 16px; bottom: 16px; }
+    .float-wa svg{ width: 22px; height: 22px; }
+  }
 
 </style>
 </head>
@@ -1305,15 +1450,6 @@ function Footer(){
               <li>CEP sob consulta</li>
             </ul>
           </div>
-          <div className="foot-col">
-            <h4>Navegar</h4>
-            <ul>
-              <li><a href="#evento">Sobre o evento</a></li>
-              <li><a href="#diferenciais">Diferenciais</a></li>
-              <li><a href="#info">Informações</a></li>
-              <li><a href="#rsvp">Confirmar presença</a></li>
-            </ul>
-          </div>
         </div>
         <div className="foot-bottom">
           <div>© 2026 MTK Matuskela Eventos · Todos os direitos reservados.</div>
@@ -1329,19 +1465,37 @@ function Footer(){
 
 /* ============ Top Nav ============ */
 function TopNav(){
+  const [open, setOpen] = useState(false);
   return (
     <nav className="top">
       <div className="wrap inner">
         <a href="#hero" className="brand" aria-label="MTK Matuskela Eventos">
           <img src="assets/mtk-logo.svg" alt="MTK Matuskela Eventos"/>
         </a>
-        <div className="nav-links">
+        <div className={"nav-links" + (open ? " open" : "")} onClick={() => setOpen(false)}>
           <a href="#evento">O Evento</a>
           <a href="#diferenciais">Diferenciais</a>
           <a href="#info">Informações</a>
           <a href="#contato">Contato</a>
+          <a href="#rsvp" className="nav-cta-mobile">Confirmar Presença</a>
         </div>
-        <a href="#rsvp" className="nav-cta">Confirmar Presença</a>
+        <div className="nav-actions">
+          <a href="#rsvp" className="nav-cta">Confirmar Presença</a>
+          <button type="button" className="nav-toggle"
+                  aria-label={open ? "Fechar menu" : "Abrir menu"}
+                  aria-expanded={open}
+                  onClick={() => setOpen(o => !o)}>
+            {open ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 6l12 12M6 18L18 6"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+                <path d="M4 7h16M4 12h16M4 17h16"/>
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
     </nav>
   );
