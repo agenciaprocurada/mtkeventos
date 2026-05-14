@@ -30,6 +30,11 @@
 
   *{box-sizing:border-box}
   html,body{margin:0;padding:0}
+  html{ scroll-behavior: smooth; }
+  section[id]{ scroll-margin-top: 88px; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
   body{
     font-family: var(--body);
     background:
@@ -849,8 +854,22 @@
     footer{ padding: 56px 0 32px; }
 
     /* hero — altura flexível e CTA cheia */
-    .hero{ height:auto; max-height:none; min-height: 540px; padding: 36px 0 48px; }
-    .hero-left{ padding: 0 22px; }
+    .hero{ height:auto; max-height:none; min-height: 540px; padding: 0 0 48px; }
+    .hero-bg{
+      background-image: url('assets/hero-bg-mobile.webp');
+      background-size: auto;
+      background-position: center top;
+      background-repeat: no-repeat;
+      opacity: 1;
+    }
+    .hero::before{
+      background: linear-gradient(180deg,
+        rgba(4,3,6,0) 0%,
+        rgba(4,3,6,0) 28%,
+        rgba(4,3,6,.75) 58%,
+        rgba(4,3,6,.95) 100%);
+    }
+    .hero-left{ align-items: flex-start; padding: 260px 22px 0; }
     .hero-content{ max-width:100%; }
     .hero-sub{ font-size: 15px; margin-bottom: 28px; }
     .hero-cta{ display:block; text-align:center; padding: 18px 24px; width:100%; }
@@ -899,6 +918,7 @@
     nav.top .inner{ height: 64px; }
     .brand img{ height: 36px; }
     .nav-links{ top: 64px; }
+    section[id]{ scroll-margin-top: 72px; }
     .hero-headline{ font-size: 32px; }
     .float-wa{ width: 50px; height: 50px; right: 16px; bottom: 16px; }
     .float-wa svg{ width: 22px; height: 22px; }
@@ -1268,7 +1288,7 @@ function EventInfo(){
 function RSVP(){
   const [form, setForm] = useState({
     nome:"", email:"", telefone:"", acompanhantes:"0",
-    interesse:"15 anos", obs:"", consent:false,
+    interesse:"15 anos", consent:false,
   });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
@@ -1387,13 +1407,6 @@ function RSVP(){
                   </label>
                 ))}
               </div>
-              <div className="err"/>
-            </div>
-
-            <div className="field full">
-              <label htmlFor="f-obs">Observações <span style={{color:"var(--muted-2)", letterSpacing:".04em", textTransform:"none"}}>(opcional)</span></label>
-              <textarea id="f-obs" placeholder="Restrições alimentares, dúvidas, datas em mente…"
-                value={form.obs} onChange={e=>set("obs", e.target.value)}/>
               <div className="err"/>
             </div>
 
