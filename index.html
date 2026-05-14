@@ -968,31 +968,24 @@
 
     .about-photo {
       position: relative;
-      aspect-ratio: 4/5;
       border: 1px solid rgba(212, 175, 106, .2);
-      background:
-        repeating-linear-gradient(45deg, rgba(212, 175, 106, .05) 0 2px, transparent 2px 16px),
-        linear-gradient(180deg, #0e0a12, #06040a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(180deg, #0e0a12, #06040a);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
     }
 
-    .about-photo .ph {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 11px;
-      letter-spacing: .2em;
-      color: var(--muted-2);
-      text-align: center;
-      padding: 18px;
-    }
-
-    .about-photo .ph .big {
-      color: var(--gold);
+    .about-photo img {
       display: block;
-      font-size: 14px;
-      margin-bottom: 10px;
-      letter-spacing: .4em;
+      width: 100%;
+      height: auto;
+    }
+
+    .about-photo::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(212, 175, 106, .22);
+      pointer-events: none;
     }
 
     /* ---------- diferenciais ---------- */
@@ -2051,10 +2044,6 @@
         width: clamp(96px, 26vw, 120px);
       }
 
-      /* about */
-      .about-photo {
-        aspect-ratio: 1/1;
-      }
 
       /* form — 16px para evitar zoom no iOS */
       .field input,
@@ -2331,7 +2320,7 @@
           <Sparkles count={22} />
           <div className="hero-left">
             <div className="hero-content">
-              <div className="hero-eyebrow">MTK Eventos · Cachoeirinha · RS</div>
+              <div className="hero-eyebrow">MTK Eventos · Gravataí · RS</div>
 
               <div className="hero-mark-row">
                 <img src="assets/openday-logo.svg" alt="Open Day" className="openday-mark sm" />
@@ -2376,12 +2365,8 @@
                   O <em>Open Day</em> é o momento em que abrimos nossas portas para você experimentar — <em>de perto</em> — a atmosfera, os sabores e os detalhes que vão transformar o seu <em>15 anos</em> ou o seu <em>casamento</em> em memória inesquecível.
                 </div>
               </div>
-              <div className="about-photo" aria-label="Espaço para foto do salão MTK">
-                <Sparkles count={14} />
-                <div className="ph">
-                  <span className="big">◆ ESPAÇO PARA FOTO ◆</span>
-                  Salão principal MTK<br />vista da escadaria iluminada
-                </div>
+              <div className="about-photo">
+                <img src="assets/mkt-eventos-gravatai-interno.webp" alt="Salão interno da MTK Eventos em Gravataí" loading="lazy" />
               </div>
             </div>
           </div>
@@ -2423,7 +2408,7 @@
     /* ============ Map (decorativo, SVG) ============ */
     function DecorativeMap() {
       return (
-        <div className="map-wrap" aria-label="Localização aproximada — Cachoeirinha, RS">
+        <div className="map-wrap" aria-label="Localização aproximada — Gravataí, RS">
           <svg className="map-svg" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice">
             <defs>
               <radialGradient id="mapBg" cx="50%" cy="50%" r="65%">
@@ -2475,9 +2460,9 @@
           <div className="map-address">
             <div>
               <div className="t1">Localização</div>
-              <div className="t2">MTK Eventos · Cachoeirinha — RS</div>
+              <div className="t2">MTK Eventos · Gravataí — RS</div>
             </div>
-            <a href="https://maps.google.com/?q=MTK+Eventos+Cachoeirinha+RS" target="_blank" rel="noreferrer">Abrir no mapa →</a>
+            <a href="https://maps.google.com/?q=RS-020%2C+60+-+Morada+do+Vale+I%2C+Gravata%C3%AD+-+RS%2C+94090-720" target="_blank" rel="noreferrer">Abrir no mapa →</a>
           </div>
         </div>
       );
@@ -2513,7 +2498,7 @@
                     <div className="ic"><Icon.Pin /></div>
                     <div>
                       <div className="lbl">Local</div>
-                      <div className="val">MTK Eventos<small>Cachoeirinha — Rio Grande do Sul</small></div>
+                      <div className="val">MTK Eventos<small>RS-020, nº 60 — Morada do Vale I<br/>Gravataí — RS · CEP 94090-720</small></div>
                     </div>
                   </div>
                 </div>
@@ -2611,7 +2596,7 @@
                   <p>Obrigado, <strong style={{ color: "var(--cream)" }}>{form.nome.split(" ")[0]}</strong>. Em breve você receberá no e-mail e no WhatsApp todos os detalhes finais sobre o Open Day MTK.</p>
                   <div className="who">Nos vemos no dia 29 de maio.</div>
                   <div style={{ marginTop: 32 }}>
-                    <a href={`https://wa.me/5551992106017?text=${encodeURIComponent("Olá! Acabei de confirmar presença no Open Day MTK 🥂")}`} className="btn primary" target="_blank" rel="noreferrer">
+                    <a href={`https://wa.me/555192211892?text=${encodeURIComponent("Olá! Acabei de confirmar presença no Open Day MTK 🥂")}`} className="btn primary" target="_blank" rel="noreferrer">
                       Falar no WhatsApp
                     </a>
                   </div>
@@ -2716,7 +2701,7 @@
             <div className="foot-grid">
               <div>
                 <img src="assets/mtk-logo.svg" alt="MTK Matuskela Eventos" className="foot-logo" />
-                <p>O espaço para eventos onde cada festa é desenhada para virar memória. 15 anos, casamentos e celebrações em Cachoeirinha — RS.</p>
+                <p>O espaço para eventos onde cada festa é desenhada para virar memória. 15 anos, casamentos e celebrações em Gravataí — RS.</p>
                 <div className="socials" aria-label="Redes sociais">
                   <a href="#" aria-label="Instagram"><Icon.Instagram width="18" height="18" /></a>
                   <a href="#" aria-label="Facebook"><Icon.Facebook width="18" height="18" /></a>
@@ -2734,9 +2719,10 @@
               <div className="foot-col">
                 <h4>Endereço</h4>
                 <ul>
-                  <li>Cachoeirinha — RS</li>
-                  <li><a href="https://maps.google.com/?q=MTK+Eventos+Cachoeirinha+RS" target="_blank" rel="noreferrer">Ver no Google Maps</a></li>
-                  <li>CEP sob consulta</li>
+                  <li>RS-020, nº 60</li>
+                  <li>Morada do Vale I</li>
+                  <li>Gravataí — RS · 94090-720</li>
+                  <li><a href="https://maps.google.com/?q=RS-020%2C+60+-+Morada+do+Vale+I%2C+Gravata%C3%AD+-+RS%2C+94090-720" target="_blank" rel="noreferrer">Ver no Google Maps</a></li>
                 </ul>
               </div>
             </div>
